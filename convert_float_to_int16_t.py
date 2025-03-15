@@ -31,7 +31,7 @@ def process_csv(input_file: str, output_dir: str):
         print(f"Column Headers: {list(df.columns)}")
 
         # Validate required columns
-        required_columns = {'accelx', 'accely', 'accelz'}
+        required_columns = {'accelx', 'accely', 'accelz', 'event'}
         if not required_columns.issubset(df.columns):
             print(f"Skipping {input_file}: Required columns missing!")
             return
@@ -40,6 +40,9 @@ def process_csv(input_file: str, output_dir: str):
         df['accelx'] = df['accelx'].apply(convert_to_raw)
         df['accely'] = df['accely'].apply(convert_to_raw)
         df['accelz'] = df['accelz'].apply(convert_to_raw)
+
+        
+        df['event'] = df['event'].apply(lambda x: 2000 if x != 0 else 0) #scaleup event to be clearly visible on the graph 
 
         # Save processed file
         output_file = os.path.join(output_dir, os.path.basename(input_file))
