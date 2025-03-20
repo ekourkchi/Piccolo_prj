@@ -4,19 +4,21 @@ import argparse
 import os
 
 # Read CSV file
-def process_csv_to_header(csv_filename, header_filename):
+def process_csv_to_header(csv_filename, header_filename, start, end):
     df = pd.read_csv(csv_filename)
     
     # Validate required columns
-    required_columns = {'accelx', 'accely', 'accelz', 'event'}
+    required_columns = {'accelx', 'accely', 'accelz', 'event', 'sequence'}
     if not required_columns.issubset(df.columns):
-        print("Required columns missing! : 'accelx', 'accely', 'accelz', 'event'")
+        print("Required columns missing! : 'accelx', 'accely', 'accelz', 'event', 'sequence'")
         return
-    # Filter rows where event is non-zero
-    filtered_df = df[df['event'] != 0][['accelx', 'accely', 'accelz']]
-    
+    # # Filter rows where event is non-zero
+    # filtered_df = df[df['event'] != 0][['accelx', 'accely', 'accelz']]
+    # Filter rows based on the 'sequence' column 
+    filtered_df = df[(df['sequence'] >= start) & (df['sequence'] <= end) & (df['event'] != 0)]
     # Convert to list of tuples
-    accel_data = filtered_df.values.tolist()
+    # accel_data = filtered_df.values.tolist()
+    accel_data = filtered_df[['accelx', 'accely', 'accelz']].values.tolist()
     
     # Write to header file
     with open(header_filename, 'w') as f:
@@ -36,6 +38,8 @@ def process_csv_to_header(csv_filename, header_filename):
 parser = argparse.ArgumentParser(description='Process a CSV file and generate a C header file with acceleration data.')
 parser.add_argument('--csv-file', required=True, help='Path to the input CSV file.')
 parser.add_argument('--out-file', required=True, help='Path to the output header file.')
+parser.add_argument('--start', required=True, type=int,help='start sequence index number from csv')
+parser.add_argument('--end', required=True, type=int,help='end sequence index number from csv')
 args = parser.parse_args()
 
 # Validate file extensions
@@ -45,5 +49,5 @@ if not args.out_file.lower().endswith('.h'):
     raise ValueError("Output file must have a .h extension")
 
 # Process the CSV file
-process_csv_to_header(args.csv_file, args.out_file)
+process_csv_to_header(args.csv_file, args.out_file, args.start, args.end)
 print(f"Header file '{args.out_file}' generated successfully.")
