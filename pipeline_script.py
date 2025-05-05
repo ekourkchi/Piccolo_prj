@@ -8,7 +8,7 @@ import subprocess
 import uuid
 from pathlib import Path
 
-docker_image = "seggar-with-nrfsdk"
+docker_image_tag = "segger-nrfsdk-ota:1"
 webe_dir_on_host = Path("webe-dir")
 assert webe_dir_on_host.exists() and webe_dir_on_host.is_dir(), f"{webe_dir_on_host} doesn't exist"
 build_type = "Debug"
@@ -18,6 +18,10 @@ webe_out_path_in_docker = f"/home/nRF5_SDK_17.0.2_d674dde/examples/ble_periphera
 webe_prj_basename = "ble_app_template_pca10056_s140"
 webe_seggar_project_path = f"/home/nRF5_SDK_17.0.2_d674dde/examples/ble_peripheral/{webe_dir_basename_in_docker}/pca10056/s140/ses/{webe_prj_basename}.emProject"
 
+#ota
+webe_ota_dir_on_host = Path("webe-ota")
+assert webe_ota_dir_on_host.exists() and webe_ota_dir_on_host.is_dir(), f"{webe_ota_dir_on_host} doesn't exist"
+webe_ota_dir_basename_in_docker = "webe-ota"
 
 def extract_zip(zip_path, extract_to):
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
@@ -28,12 +32,13 @@ def extract_zip(zip_path, extract_to):
 #     subprocess.run(["docker", "build", "-t", tag, "."], check=True)
 #     print(f"Docker image '{tag}' built.")
 
-def run_docker_build(extracted_dir, output_dir, docker_tag=docker_image):
+def run_docker_build(extracted_dir, output_dir, docker_tag=docker_image_tag):
     container_name = f"build_container_{uuid.uuid4().hex[:8]}"
     
     subprocess.run([
         "docker", "run", "--name", container_name,
         "-v", f"{webe_dir_on_host.resolve()}:/home/{webe_dir_basename_in_docker}",
+         "-v", f"{webe_ota_dir_on_host.resolve()}:/home/{webe_ota_dir_basename_in_docker}",
         "-v", f"{extracted_dir}:/home/input",
         "-v", f"{output_dir}:/home/output",
         docker_tag,
@@ -42,7 +47,10 @@ def run_docker_build(extracted_dir, output_dir, docker_tag=docker_image):
          cp -r /home/{webe_dir_basename_in_docker}/ {webe_path_in_docker}/ && \
          cp -r /home/input/knowledgepack {webe_path_in_docker}/{webe_dir_basename_in_docker} && \
          /home/segger/bin/emBuild {webe_seggar_project_path} -config {build_type} && \
-         cp -r {webe_out_path_in_docker}/{webe_prj_basename}.hex /home/output/
+         cp -r {webe_out_path_in_docker}/{webe_prj_basename}.hex /home/output/ && \
+         cd /home/{webe_ota_dir_basename_in_docker} && \
+         make package APP_IMG={webe_out_path_in_docker}/{webe_prj_basename}.hex && \
+         cp -r /home/{webe_ota_dir_basename_in_docker}/hex/we-be-firmware-update-pkg.zip /home/output/
          """
     ], check=True)
 
