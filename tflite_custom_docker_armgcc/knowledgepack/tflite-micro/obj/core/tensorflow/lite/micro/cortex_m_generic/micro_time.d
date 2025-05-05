@@ -1,0 +1,21 @@
+obj/core/tensorflow/lite/micro/cortex_m_generic/micro_time.o: \
+ tensorflow/lite/micro/cortex_m_generic/micro_time.cc \
+ tensorflow/lite/micro/micro_time.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/c++/10.3.1/cstdint \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/c++/10.3.1/arm-none-eabi/thumb/v7e-m+fp/hard/bits/c++config.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/c++/10.3.1/arm-none-eabi/thumb/v7e-m+fp/hard/bits/os_defines.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/c++/10.3.1/arm-none-eabi/thumb/v7e-m+fp/hard/bits/cpu_defines.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdint.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/features.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/_newlib_version.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_intsup.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h \
+ third_party/cmsis/Device/ARM/ARMCM4/Include/ARMCM4_FP.h \
+ third_party/cmsis/CMSIS/Core/Include/core_cm4.h \
+ third_party/cmsis/CMSIS/Core/Include/cmsis_version.h \
+ third_party/cmsis/CMSIS/Core/Include/cmsis_compiler.h \
+ third_party/cmsis/CMSIS/Core/Include/cmsis_gcc.h \
+ third_party/cmsis/CMSIS/Core/Include/mpu_armv7.h \
+ third_party/cmsis/Device/ARM/ARMCM4/Include/system_ARMCM4.h

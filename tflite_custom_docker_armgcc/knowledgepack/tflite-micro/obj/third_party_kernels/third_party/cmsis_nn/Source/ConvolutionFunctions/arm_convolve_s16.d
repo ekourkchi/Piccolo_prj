@@ -1,0 +1,33 @@
+obj/third_party_kernels/third_party/cmsis_nn/Source/ConvolutionFunctions/arm_convolve_s16.o: \
+ third_party/cmsis_nn/Source/ConvolutionFunctions/arm_convolve_s16.c \
+ third_party/cmsis_nn/Include/arm_nnfunctions.h \
+ third_party/cmsis_nn/Include/arm_nn_math_types.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include-fixed/limits.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include-fixed/syslimits.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/limits.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/newlib.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/_newlib_version.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/cdefs.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/features.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stddef.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/syslimits.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdint.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_intsup.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/string.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/_ansi.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/config.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/ieeefp.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/reent.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/_ansi.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_types.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_types.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/lock.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/string.h \
+ third_party/cmsis_nn/Include/arm_nn_types.h \
+ third_party/cmsis_nn/Include/arm_nnsupportfunctions.h \
+ third_party/cmsis_nn/Include/Internal/arm_nn_compiler.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/arm_acle.h \
+ /usr/local/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdbool.h

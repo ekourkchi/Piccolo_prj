@@ -1,0 +1,1 @@
+Added -fno-use-cxa-atexit in CXXFLAGS in Makefile of tflite-micro inside sensiml (N.B : we got this sensiml tflite micro after retriving the docker image for tensorflow from sensiml, then we did change inside piccolo/docker_compilers/tensorflow/v4.0/Dockerfile)
