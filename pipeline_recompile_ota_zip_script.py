@@ -8,7 +8,7 @@ import subprocess
 import uuid
 from pathlib import Path
 
-docker_image_tag = "segger-nrfsdk-ota:1"
+docker_image_tag = "asmita08/segger-nrfsdk-ota:latest"
 webe_dir_on_host = Path("webe-dir")
 assert webe_dir_on_host.exists() and webe_dir_on_host.is_dir(), f"{webe_dir_on_host} doesn't exist"
 build_type = "Debug"
