@@ -1,0 +1,23 @@
+{
+  "timestamp": 0,
+  "temperature": 0,
+  "grn_count": 0,
+  "grn2Cnt": 0,
+  "irCnt": 0,
+  "redCnt": 0,
+  "accelx": 0,
+  "accely": 0,
+  "accelz": 0,
+  "heart_rate_estim": 0,
+  "hr_confidence": 0,
+  "rr_interbeat_interval": 0,
+  "rr_confidence": 0,
+  "activity_class": 0,
+  "skin_contact_state": 0,
+  "walk_steps": 0,
+  "run_steps": 0,
+  "kcal": 0,
+  "cadence": 0,
+  "event": 0,
+  "eda": 0
+} 
