@@ -33,6 +33,33 @@ def convert_to_int16(value: float, lsb_value: float = 0.001) -> int:
     except (ValueError, TypeError):
         return 0
 
+def convert_eda_to_adc(eda_value: float) -> int:
+    """Convert EDA value back to ADC_out (int16_t).
+    
+    Original formula: eda = -110.0*ADC_out/(11.0*ADC_out - 435200.0)
+    Solving for ADC_out: ADC_out = (435200.0 * eda) / (11.0 * eda + 110.0)
+    """
+    if pd.isna(eda_value) or eda_value == "":
+        return 0
+    
+    try:
+        eda = float(eda_value)
+        
+        # Avoid division by zero
+        if abs(11.0 * eda + 110.0) < 1e-10:
+            return 0
+        
+        # Solve for ADC_out: ADC_out = (435200.0 * eda) / (11.0 * eda + 110.0)
+        adc_out = (435200.0 * eda) / (11.0 * eda + 110.0)
+        
+        # Convert to int16_t and clamp to valid range
+        adc_out_int = int(round(adc_out))
+        adc_out_int = max(-32768, min(32767, adc_out_int))  # Clamp to int16 range
+        
+        return adc_out_int
+    except (ValueError, TypeError, ZeroDivisionError):
+        return 0
+
 def load_config(config_file: str) -> dict:
     """Load and validate JSON configuration file."""
     try:
@@ -111,9 +138,13 @@ def process_csv_file(csv_file: str, config: dict, output_dir: str) -> bool:
         # Keep only the selected columns that exist
         df_filtered = df[available_columns].copy()
         
-        # Apply convert_to_int16 function to all selected columns
+        # Apply convert_to_int16 function only to accelerometer columns
+        accelerometer_columns = ['accelx', 'accely', 'accelz']
         for column in available_columns:
-            df_filtered[column] = df_filtered[column].apply(convert_to_int16)
+            if column in accelerometer_columns:
+                df_filtered[column] = df_filtered[column].apply(convert_to_int16)
+            if column == 'eda':
+                df_filtered[column] = df_filtered[column].apply(convert_eda_to_adc)
         
         
         # Save processed file
